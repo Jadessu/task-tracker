@@ -1,0 +1,13 @@
+type Todo @model {
+  id: ID!
+  title: String!
+  description: String
+  status: TodoStatus!
+  dueDate: AWSDate!
+}
+
+enum TodoStatus {
+INPROGRESS
+COMPLETED
+ONHOLD
+}

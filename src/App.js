@@ -13,6 +13,10 @@ function App() {
 
   const [formState, setFormState] = useState(initialState)
   const [todos, setTodos] = useState([])
+
+  function setInput(key, value) {
+    setFormState({...formState, [key]: value})
+  }
   return (
     <div className="App">
       <header className="App-header">

@@ -42,6 +42,34 @@ function App() {
       <header className="App-header">
        
       </header>
+      <div>
+        <input 
+        required
+        name="title"
+        onChange={event => setInput('title', event.target.value)} 
+        value={formState.title}
+        placeholder="Title"
+        />
+        <input
+        name="description"
+        onChange={ event => setInput('description', event.target.value)}
+        value={formState.description}
+        placeholder="Description" />
+        <input
+        required
+        type="date"
+        name="dueDate"
+        onChange={ event => setInput("dueDate", event.target.value)}
+        value={formState.dueDate}
+         />
+         <select 
+         required
+         defaultValue="NOTSTARTED"
+         name="status"
+         onChange={ event => setInput('status', event.target.value)}
+         />
+
+      </div>
     </div>
   );
 }

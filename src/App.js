@@ -43,6 +43,7 @@ function App() {
        
       </header>
       <div>
+        <form>
         <input 
         required
         name="title"
@@ -67,8 +68,14 @@ function App() {
          defaultValue="NOTSTARTED"
          name="status"
          onChange={ event => setInput('status', event.target.value)}
-         />
-
+         >
+            <option value="NOTSTARTED">Not Started</option>
+            <option value="INPROGRESS">In Progress</option>
+            <option value="COMPLETED">Completed</option>
+            <option value="ONHOLD">On Hold</option>
+           </select>
+           <button onClick={() => addTodo()}>Add Task</button>
+      </form>
       </div>
     </div>
   );

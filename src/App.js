@@ -10,6 +10,9 @@ Amplify.configure(awsExports)
 const initialState = { title: "", description: "", status: "NOTSTARTED", dueDate: "" }
 
 function App() {
+
+  const [formState, setFormState] = useState(initialState)
+  const [todos, setTodos] = useState([])
   return (
     <div className="App">
       <header className="App-header">

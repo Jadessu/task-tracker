@@ -17,6 +17,14 @@ function App() {
   function setInput(key, value) {
     setFormState({...formState, [key]: value})
   }
+
+  async function fetchTodos(){
+    try {
+      const todoData = await API.graphql(graphqlOperation(listTodos))
+      const todos = todoData.data.listTodos.items
+      setTodos(todos)
+    } catch ( err) { console.log(' error fetching todoos')}
+  }
   return (
     <div className="App">
       <header className="App-header">

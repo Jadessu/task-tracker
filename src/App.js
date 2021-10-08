@@ -25,6 +25,18 @@ function App() {
       setTodos(todos)
     } catch ( err) { console.log(' error fetching todoos')}
   }
+
+  async function addTodo(){
+    try {
+      if (!formState.title || !formState.description) return
+      const todo = {...formState}
+      setTodos([...todos, todo])
+      setFormState(initialState)
+      await API.graphql(graphqlOperation(createTodo, { input: todo}))
+    } catch (err) {
+      console.log(" error creating todo:", err)
+    }
+  }
   return (
     <div className="App">
       <header className="App-header">

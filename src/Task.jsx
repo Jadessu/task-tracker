@@ -6,6 +6,9 @@ import * as FaIcons from "react-icons/fa";
 import "./Task.css"
 import requests from "./request";
 import { fetchCompleted } from "./request";
+import styled from "styled-components";
+import Modal from "react-modal"
+
 
 
 import awsExports from "./aws-exports";
@@ -18,17 +21,24 @@ const initialState = {
   dueDate: "",
 };
 
+const Button = styled.button`
+  min-width: 100px;
+  padding: 16px 32px;
+  border-radius: 4px;
+  border: none;
+  background: #141414;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+`;
 
 function Task( {title, fetchUrl}){
 
 
   const [formState, setFormState] = useState(initialState);
-  const [showMadal, setShowModal] = useState(false)
   const [todos, setTodos] = useState([]);
 
-  const openModal = () => {
-    setShowModal( prev => !prev)
-  }
+
 
   useEffect(() => {
     fetchTodos();
@@ -65,6 +75,8 @@ function Task( {title, fetchUrl}){
   }
     return (
       <div>
+        <button>Open modal</button>
+        <Modal isOpen={true}>
         <form>
           <input
             required
@@ -99,6 +111,7 @@ function Task( {title, fetchUrl}){
           </select>
           <button onClick={() => addTodo()}>Add Task</button>
         </form>
+        </Modal>
         <div className="todos">
           <div className="actions">
 

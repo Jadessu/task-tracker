@@ -25,6 +25,13 @@ const SidebarNav = styled.nav`
   background: #15171c;
   width: 250px;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
+  transition: 350ms;
+  z-index: 10
 `;
 const SidebarWrap = styled.div`
   width: 100%;
@@ -38,13 +45,13 @@ const showSidebar = () => setSidebar(!sidebar)
     <>
       <Nav>
         <NavIcon to="#">
-          <FaIcons.FaBars />
+          <FaIcons.FaBars onClick={showSidebar} />
         </NavIcon>
       </Nav>
-      <SidebarNav>
+      <SidebarNav sidebar={sidebar}>
         <SidebarWrap>
           <NavIcon to="#">
-            <AiIcons.AiOutlineClose />
+            <AiIcons.AiOutlineClose onClick={showSidebar}/>
           </NavIcon>
         </SidebarWrap>
       </SidebarNav>

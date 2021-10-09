@@ -61,6 +61,8 @@ const UserIcon = styled.div``;
 function Sidebar() {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
+  const closeSidebar = () => setSidebar(false)
+
   const [ user, setUser] = useState("")
 
   Auth.currentAuthenticatedUser().then((user) => {
@@ -89,7 +91,7 @@ function Sidebar() {
             </UserName>
 
             {SidebarData.map((item, index) => {
-              return <SubMenu item={item} key={index} />;
+              return <SubMenu item={item} key={index} onClick={closeSidebar} />;
             })}
           </SidebarWrap>
         </SidebarNav>

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import { createTodo } from "./graphql/mutations";
 import { listTodos } from "./graphql/queries";
+import * as FaIcons from "react-icons/fa";
+
 
 import awsExports from "./aws-exports";
 Amplify.configure(awsExports);
@@ -14,7 +16,7 @@ const initialState = {
 };
 
 
-function Task(){
+function Task( {title}){
 
 
   const [formState, setFormState] = useState(initialState);
@@ -85,6 +87,33 @@ function Task(){
           </select>
           <button onClick={() => addTodo()}>Add Task</button>
         </form>
+        <div className="todos">
+          <h2>{title}</h2>
+
+          {todos.map((todo, index) => (
+            <div key={todo.id ? todo.id : index}>
+              <div className="title">
+                <p>{todo.title}</p>
+              <FaIcons.FaTrashAlt/>
+              </div>
+              <div className="description">
+              <p>{todo.description}</p>
+              </div>
+              <div className="date-status">
+              <input type="date" name="dueDate" value={todo.dueDate} />
+
+              <select name="status" id="status" defaultValue={todo.status}>
+                <option value="NOTSTARTED">Not Started</option>
+                <option value="INPROGRESS">In Progress</option>
+                <option value="COMPLETED">Completed</option>
+                <option value="ONHOLD">On Hold</option>
+              </select>
+              </div>
+
+             
+            </div>
+          ))}
+        </div>
       </div>
     );
 }

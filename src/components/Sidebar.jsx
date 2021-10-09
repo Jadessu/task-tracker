@@ -7,6 +7,8 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./SidebarData";
 import SubMenu from "./SubMenu";
+import { IconContext } from "react-icons/lib";
+
 
 const Nav = styled.div`
   background: #15171c;
@@ -62,34 +64,36 @@ function Sidebar() {
   const [ user, setUser] = useState("")
 
   Auth.currentAuthenticatedUser().then((user) => {
-    console.log("user email = " + user.attributes.email);
-    console.log(user.username);
+    
+    setUser(user.username)
   });
 
 
   return (
     <>
-      <Nav>
-        <NavIcon to="#">
-          <FaIcons.FaBars onClick={showSidebar} />
-        </NavIcon>
-      </Nav>
-      <SidebarNav sidebar={sidebar}>
-        <SidebarWrap>
+      <IconContext.Provider value={{ color: "#fff" }}>
+        <Nav>
           <NavIcon to="#">
-            <AiIcons.AiOutlineClose onClick={showSidebar} />
+            <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
-          <UserName>
-            <FaIcons.FaUserCircle />
-            
-            <SidebarLabel>Jadessu</SidebarLabel>
-          </UserName>
+        </Nav>
+        <SidebarNav sidebar={sidebar}>
+          <SidebarWrap>
+            <NavIcon to="#">
+              <AiIcons.AiOutlineClose onClick={showSidebar} />
+            </NavIcon>
+            <UserName>
+              <FaIcons.FaUserCircle />
 
-          {SidebarData.map((item, index) => {
-            return <SubMenu item={item} key={index} />;
-          })}
-        </SidebarWrap>
-      </SidebarNav>
+              <SidebarLabel>{user}</SidebarLabel>
+            </UserName>
+
+            {SidebarData.map((item, index) => {
+              return <SubMenu item={item} key={index} />;
+            })}
+          </SidebarWrap>
+        </SidebarNav>
+      </IconContext.Provider>
     </>
   );
 }

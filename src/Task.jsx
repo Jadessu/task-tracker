@@ -36,6 +36,7 @@ function Task( {title, fetchUrl}){
 
 
   const [formState, setFormState] = useState(initialState);
+  const [ modalIsOpen, setModalIsOpen] = useState(false)
   const [todos, setTodos] = useState([]);
 
 
@@ -75,8 +76,8 @@ function Task( {title, fetchUrl}){
   }
     return (
       <div>
-        <button>Open modal</button>
-        <Modal isOpen={true}>
+        <button onClick = {() => setModalIsOpen(true)}>Open modal</button>
+        <Modal isOpen={modalIsOpen}>
         <form>
           <input
             required

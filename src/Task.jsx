@@ -3,11 +3,14 @@ import Amplify, { API, graphqlOperation } from "aws-amplify";
 import { createTodo } from "./graphql/mutations";
 import { listTodos } from "./graphql/queries";
 import * as FaIcons from "react-icons/fa";
+import * as GrIcons from "react-icons/gr"
 import "./Task.css"
 import requests from "./request";
 import { fetchCompleted } from "./request";
 import styled from "styled-components";
 import Modal from "react-modal"
+import { IconContext } from "react-icons/lib";
+
 
 
 
@@ -22,16 +25,27 @@ const initialState = {
 };
 
 const Button = styled.button`
-  min-width: 100px;
-  padding: 16px 32px;
-  border-radius: 4px;
+  background: #161b33;
   border: none;
-  background: #141414;
   color: #fff;
-  font-size: 24px;
+  padding: 15px 45px;
+  font-size: 17px;
+  outline: none;
+  border-radius: 3px;
+  font-family: Roboto;
+  letter-spacing: 1.5px;
+  font-weight: 400;
   cursor: pointer;
+  transition: all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  margin: 10px;
+
+  &:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
 `;
 
+Modal.setAppElement("#root")
 function Task( {title, fetchUrl}){
 
 
@@ -75,86 +89,117 @@ function Task( {title, fetchUrl}){
     }
   }
     return (
-      <div>
-        <button onClick = {() => setModalIsOpen(true)}>Open modal</button>
-        <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-        <form>
-          <div className="close" onClick={ () => setModalIsOpen(false)}>X</div>
-          <input
-            required
-            name="title"
-            onChange={(event) => setInput("title", event.target.value)}
-            value={formState.title}
-            placeholder="Title"
-          />
-          <input
-            name="description"
-            onChange={(event) => setInput("description", event.target.value)}
-            value={formState.description}
-            placeholder="Description"
-          />
-          <input
-            required
-            type="date"
-            name="dueDate"
-            onChange={(event) => setInput("dueDate", event.target.value)}
-            value={formState.dueDate}
-          />
-          <select
-            required
-            defaultValue="NOTSTARTED"
-            name="status"
-            onChange={(event) => setInput("status", event.target.value)}
-          >
-            <option value="NOTSTARTED">Not Started</option>
-            <option value="INPROGRESS">In Progress</option>
-            <option value="COMPLETED">Completed</option>
-            <option value="ONHOLD">On Hold</option>
-          </select>
-          <button onClick={() => addTodo()}>Add Task</button>
-        </form>
-        </Modal>
-        <div className="todos">
+      <IconContext.Provider value={{ color: "#fff" }}>
+        <div className="wrapper">
           <div className="actions">
+            <div className="page-title">
 
-          <h1>{title}</h1>
+            <h1>{title}</h1>
+            </div>
+            <span>
+
+            <Button onClick={() => setModalIsOpen(true)}>+ New Task</Button>
+            </span>
           </div>
-          <div className="todo-container">
-            {todos.map((todo, index) => (
-              <div className="todo">
-                <div key={todo.id ? todo.id : index}>
-                  <div className="title">
-                    <p>{todo.title}</p>
-                    <span>
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={() => setModalIsOpen(false)}
+            style={{
+              overlay: {
+                backgroundColor: "rgba(0, 0,0,0.8)",
+              },
+              content: {
+                width: "800px",
+                height: "500px",
+                boxShadow: "0 5px 16px rgba(0, 0, 0, 0,2)",
+                background: "#fff",
+                color: "#000",
+                borderRadius: "10px",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                right: "auto",
+                bottom: "auto",
+                marginRight: "-50%",
+                transform: "translate(-50%, -50%)",
+              },
+            }}
+          >
+            <form>
+              <div className="close" onClick={() => setModalIsOpen(false)}>
+                <GrIcons.GrClose />
+              </div>
+              <input
+                required
+                name="title"
+                onChange={(event) => setInput("title", event.target.value)}
+                value={formState.title}
+                placeholder="Title"
+              />
+              <input
+                name="description"
+                onChange={(event) =>
+                  setInput("description", event.target.value)
+                }
+                value={formState.description}
+                placeholder="Description"
+              />
+              <input
+                required
+                type="date"
+                name="dueDate"
+                onChange={(event) => setInput("dueDate", event.target.value)}
+                value={formState.dueDate}
+              />
+              <select
+                required
+                defaultValue="NOTSTARTED"
+                name="status"
+                onChange={(event) => setInput("status", event.target.value)}
+              >
+                <option value="NOTSTARTED">Not Started</option>
+                <option value="INPROGRESS">In Progress</option>
+                <option value="COMPLETED">Completed</option>
+                <option value="ONHOLD">On Hold</option>
+              </select>
+              <button onClick={() => addTodo()}>Add Task</button>
+            </form>
+          </Modal>
+          <div className="todos">
+            <div className="todo-container">
+              {todos.map((todo, index) => (
+                <div className="todo">
+                  <div key={todo.id ? todo.id : index}>
+                    <div className="todo-title">
+                      <p>{todo.title}</p>
+                      <span>
+                        <FaIcons.FaTrashAlt />
+                      </span>
+                    </div>
+                    <div className="description">
+                      <p>{todo.description}</p>
+                    </div>
+                    <div className="date-status">
+                      <input type="date" name="dueDate" value={todo.dueDate} />
 
-                    <FaIcons.FaTrashAlt />
-                    </span>
-
-                    
-                  </div>
-                  <div className="description">
-                    <p>{todo.description}</p>
-                  </div>
-                  <div className="date-status">
-                    <input type="date" name="dueDate" value={todo.dueDate} />
-
-                    <select
-                      name="status"
-                      id="status"
-                      defaultValue={todo.status}
-                    >
-                      <option value="NOTSTARTED">Not Started</option>
-                      <option value="INPROGRESS">In Progress</option>
-                      <option value="COMPLETED">Completed</option>
-                      <option value="ONHOLD">On Hold</option>
-                    </select>
+                      <select
+                        name="status"
+                        id="status"
+                        defaultValue={todo.status}
+                      >
+                        <option value="NOTSTARTED">Not Started</option>
+                        <option value="INPROGRESS">In Progress</option>
+                        <option value="COMPLETED">Completed</option>
+                        <option value="ONHOLD">On Hold</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      </IconContext.Provider>
     );
 }
 

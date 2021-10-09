@@ -1,31 +1,31 @@
 import React, { useState } from "react";
 import Task from "../Task";
-
+import { requests, fetchCompleted, fetchInProgress, fetchNotStarted, fetchonHold, fetchAll } from "../request";
 export const Tasks = () => {
   return (
     <div>
-      <Task title="All Tasks" />
+      <Task title="All Tasks" fetchUrl={fetchAll} />
     </div>
   );
 };
 export const InProgress = () => {
   return (
     <div>
-      <h1> Tasks In Progress</h1>
+      <Task title="Tasks In Progress" fetchUrl={fetchInProgress}/>
     </div>
   );
 };
 export const Completed = () => {
   return (
     <div>
-      <h1> Tasks Completed</h1>
+      <Task title="Tasks Completed" fetchUrl={fetchCompleted}/>
     </div>
   );
 };
 export const OnHold = () => {
   return (
     <div>
-      <h1> Tasks on Hold</h1>
+     <Task title="Tasks On Hold" fetchUrl={fetchonHold}/>
     </div>
   );
 };

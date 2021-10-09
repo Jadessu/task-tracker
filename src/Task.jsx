@@ -4,6 +4,8 @@ import { createTodo } from "./graphql/mutations";
 import { listTodos } from "./graphql/queries";
 import * as FaIcons from "react-icons/fa";
 import "./Task.css"
+import requests from "./request";
+import { fetchCompleted } from "./request";
 
 
 import awsExports from "./aws-exports";
@@ -17,16 +19,15 @@ const initialState = {
 };
 
 
-function Task( {title}){
+function Task( {title, fetchUrl}){
 
 
   const [formState, setFormState] = useState(initialState);
   const [todos, setTodos] = useState([]);
-  const [completed, setCompleted] = useState([])
 
   useEffect(() => {
     fetchTodos();
-    fetchCompleted()
+    
   }, []);
 
   function setInput(key, value) {
@@ -35,7 +36,7 @@ function Task( {title}){
 
   async function fetchTodos() {
     try {
-      const todoData = await API.graphql(graphqlOperation(listTodos));
+      const todoData = await fetchUrl;
       const todos = todoData.data.listTodos.items;
       setTodos(todos);
     } catch (err) {
@@ -43,23 +44,8 @@ function Task( {title}){
     }
   }
 
-  let filter = {
-    status: {
-      eq: "COMPLETED"
-    }
-  }
+ 
 
-  async function fetchCompleted(){
-    try {
-      const todoData = await API.graphql({ query: listTodos, variables: { filter: filter}})
-      const todos = todoData.data.listTodos.items
-      setCompleted(todos)
-    } catch (err){
-      console.log("error fetching todos")
-    }
-  }
-
-  console.log(completed)
 
   async function addTodo() {
     try {

@@ -13,36 +13,35 @@ export const SidebarData = [
     title: "Overview",
     path: "/overview",
     icon: <AiIcons.AiFillHome />,
-    iconClosed: <RiIcons.RiArrowDownSFill />,
-    iconOpened: <RiIcons.RiArrowUpSFill />,
+    
   },
   {
     title: "Tasks",
     path: "/tasks",
-    icon: <AiIcons.AiFillHome />,
-    iconClosed: <FaIcons.FaTasks />,
-    iconOpened: <BsIcons.BsListTask />,
+    icon: <FaIcons.FaTasks />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
-        {
-            title: "In Progress",
-            path: "/tasks/inprogress",
-            icon: <GrIcons.GrInProgress/>,
-        },
-        {
-            title: "Completed",
-            path: "/tasks/completed",
-            icon: <BsIcons.BsCalendarCheck/>,
-        },
-        {
-            title: "On Hold",
-            path: "/tasks/onhold",
-            icon: <MdIcons.MdNotificationsPaused/>
-        }
-    ]
+      {
+        title: "In Progress",
+        path: "/tasks/inprogress",
+        icon: <GrIcons.GrInProgress />,
+      },
+      {
+        title: "Completed",
+        path: "/tasks/completed",
+        icon: <BsIcons.BsCalendarCheck />,
+      },
+      {
+        title: "On Hold",
+        path: "/tasks/onhold",
+        icon: <MdIcons.MdNotificationsPaused />,
+      },
+    ],
   },
   {
-      title: "Timer",
-      path: "/timer",
-      icon: <BiIcons.BiTimer/>
-  }
+    title: "Timer",
+    path: "/timer",
+    icon: <BiIcons.BiTimer />,
+  },
 ];

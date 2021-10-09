@@ -1,8 +1,12 @@
+import  { Auth } from "aws-amplify";
+
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
+import { SidebarData } from "./SidebarData";
+import SubMenu from "./SubMenu";
 
 const Nav = styled.div`
   background: #15171c;
@@ -21,6 +25,10 @@ const NavIcon = styled(Link)`
   align-items: center;
 `;
 
+const SidebarLabel = styled.span`
+  margin-left: 16px;
+`;
+
 const SidebarNav = styled.nav`
   background: #15171c;
   width: 250px;
@@ -31,15 +39,33 @@ const SidebarNav = styled.nav`
   top: 0;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 350ms;
-  z-index: 10
+  z-index: 10;
 `;
 const SidebarWrap = styled.div`
   width: 100%;
 `;
 
+const UserName = styled.div`
+  font-size: 1.5rem;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
+`;
+
+const UserIcon = styled.div``;
+
 function Sidebar() {
-    const [sidebar, setSidebar] = useState(false)
-const showSidebar = () => setSidebar(!sidebar)
+  const [sidebar, setSidebar] = useState(false);
+  const showSidebar = () => setSidebar(!sidebar);
+  const [ user, setUser] = useState("")
+
+  Auth.currentAuthenticatedUser().then((user) => {
+    console.log("user email = " + user.attributes.email);
+    console.log(user.username);
+  });
+
 
   return (
     <>
@@ -51,8 +77,17 @@ const showSidebar = () => setSidebar(!sidebar)
       <SidebarNav sidebar={sidebar}>
         <SidebarWrap>
           <NavIcon to="#">
-            <AiIcons.AiOutlineClose onClick={showSidebar}/>
+            <AiIcons.AiOutlineClose onClick={showSidebar} />
           </NavIcon>
+          <UserName>
+            <FaIcons.FaUserCircle />
+            
+            <SidebarLabel>Jadessu</SidebarLabel>
+          </UserName>
+
+          {SidebarData.map((item, index) => {
+            return <SubMenu item={item} key={index} />;
+          })}
         </SidebarWrap>
       </SidebarNav>
     </>

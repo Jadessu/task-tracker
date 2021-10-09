@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Task from "../Task";
-import { requests, fetchCompleted, fetchInProgress, fetchNotStarted, fetchonHold, fetchAll } from "../request";
+import {  fetchCompleted, fetchInProgress, fetchNotStarted, fetchonHold, fetchAll } from "../request";
 export const Tasks = () => {
   return (
     <div>

@@ -3,6 +3,7 @@ import Amplify, { API, graphqlOperation } from "aws-amplify";
 import { createTodo } from "./graphql/mutations";
 import { listTodos } from "./graphql/queries";
 import * as FaIcons from "react-icons/fa";
+import "./Task.css"
 
 
 import awsExports from "./aws-exports";
@@ -21,9 +22,11 @@ function Task( {title}){
 
   const [formState, setFormState] = useState(initialState);
   const [todos, setTodos] = useState([]);
+  const [completed, setCompleted] = useState([])
 
   useEffect(() => {
     fetchTodos();
+    fetchCompleted()
   }, []);
 
   function setInput(key, value) {
@@ -39,6 +42,24 @@ function Task( {title}){
       console.log(" error fetching todoos");
     }
   }
+
+  let filter = {
+    status: {
+      eq: "COMPLETED"
+    }
+  }
+
+  async function fetchCompleted(){
+    try {
+      const todoData = await API.graphql({ query: listTodos, variables: { filter: filter}})
+      const todos = todoData.data.listTodos.items
+      setCompleted(todos)
+    } catch (err){
+      console.log("error fetching todos")
+    }
+  }
+
+  console.log(completed)
 
   async function addTodo() {
     try {
@@ -88,31 +109,44 @@ function Task( {title}){
           <button onClick={() => addTodo()}>Add Task</button>
         </form>
         <div className="todos">
-          <h2>{title}</h2>
+          <div className="actions">
 
-          {todos.map((todo, index) => (
-            <div key={todo.id ? todo.id : index}>
-              <div className="title">
-                <p>{todo.title}</p>
-              <FaIcons.FaTrashAlt/>
-              </div>
-              <div className="description">
-              <p>{todo.description}</p>
-              </div>
-              <div className="date-status">
-              <input type="date" name="dueDate" value={todo.dueDate} />
+          <h1>{title}</h1>
+          </div>
+          <div className="todo-container">
+            {todos.map((todo, index) => (
+              <div className="todo">
+                <div key={todo.id ? todo.id : index}>
+                  <div className="title">
+                    <p>{todo.title}</p>
+                    <span>
 
-              <select name="status" id="status" defaultValue={todo.status}>
-                <option value="NOTSTARTED">Not Started</option>
-                <option value="INPROGRESS">In Progress</option>
-                <option value="COMPLETED">Completed</option>
-                <option value="ONHOLD">On Hold</option>
-              </select>
-              </div>
+                    <FaIcons.FaTrashAlt />
+                    </span>
 
-             
-            </div>
-          ))}
+                    
+                  </div>
+                  <div className="description">
+                    <p>{todo.description}</p>
+                  </div>
+                  <div className="date-status">
+                    <input type="date" name="dueDate" value={todo.dueDate} />
+
+                    <select
+                      name="status"
+                      id="status"
+                      defaultValue={todo.status}
+                    >
+                      <option value="NOTSTARTED">Not Started</option>
+                      <option value="INPROGRESS">In Progress</option>
+                      <option value="COMPLETED">Completed</option>
+                      <option value="ONHOLD">On Hold</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );

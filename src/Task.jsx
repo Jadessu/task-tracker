@@ -84,9 +84,11 @@ function Task( {title, fetchUrl}){
       setTodos([...todos, todo]);
       setFormState(initialState);
       await API.graphql(graphqlOperation(createTodo, { input: todo }));
+      setModalIsOpen(false);
     } catch (err) {
       console.log(" error creating todo:", err);
     }
+    
   }
     return (
       <IconContext.Provider value={{ color: "#fff" }}>
@@ -123,12 +125,15 @@ function Task( {title, fetchUrl}){
               },
             }}
           >
-            <h2>Add A New Task</h2>
-            <div className="form-wrapper">
-              <form>
                 <div className="close" onClick={() => setModalIsOpen(false)}>
                   <GrIcons.GrClose />
                 </div>
+            <div className="form-title">
+
+            <h2>Add A New Task</h2>
+            </div>
+            <div className="form-wrapper">
+              <form>
                 <label htmlFor="">Title:</label>
                 <input
                   required

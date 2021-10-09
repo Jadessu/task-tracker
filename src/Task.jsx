@@ -23,7 +23,12 @@ function Task( {title, fetchUrl}){
 
 
   const [formState, setFormState] = useState(initialState);
+  const [showMadal, setShowModal] = useState(false)
   const [todos, setTodos] = useState([]);
+
+  const openModal = () => {
+    setShowModal( prev => !prev)
+  }
 
   useEffect(() => {
     fetchTodos();

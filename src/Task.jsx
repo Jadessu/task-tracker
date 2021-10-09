@@ -77,8 +77,9 @@ function Task( {title, fetchUrl}){
     return (
       <div>
         <button onClick = {() => setModalIsOpen(true)}>Open modal</button>
-        <Modal isOpen={modalIsOpen}>
+        <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
         <form>
+          <div className="close" onClick={ () => setModalIsOpen(false)}>X</div>
           <input
             required
             name="title"

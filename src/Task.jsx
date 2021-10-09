@@ -93,12 +93,10 @@ function Task( {title, fetchUrl}){
         <div className="wrapper">
           <div className="actions">
             <div className="page-title">
-
-            <h1>{title}</h1>
+              <h1>{title}</h1>
             </div>
             <span>
-
-            <Button onClick={() => setModalIsOpen(true)}>+ New Task</Button>
+              <Button onClick={() => setModalIsOpen(true)}>+ New Task</Button>
             </span>
           </div>
           <Modal
@@ -125,45 +123,62 @@ function Task( {title, fetchUrl}){
               },
             }}
           >
-            <form>
-              <div className="close" onClick={() => setModalIsOpen(false)}>
-                <GrIcons.GrClose />
-              </div>
-              <input
-                required
-                name="title"
-                onChange={(event) => setInput("title", event.target.value)}
-                value={formState.title}
-                placeholder="Title"
-              />
-              <input
-                name="description"
-                onChange={(event) =>
-                  setInput("description", event.target.value)
-                }
-                value={formState.description}
-                placeholder="Description"
-              />
-              <input
-                required
-                type="date"
-                name="dueDate"
-                onChange={(event) => setInput("dueDate", event.target.value)}
-                value={formState.dueDate}
-              />
-              <select
-                required
-                defaultValue="NOTSTARTED"
-                name="status"
-                onChange={(event) => setInput("status", event.target.value)}
-              >
-                <option value="NOTSTARTED">Not Started</option>
-                <option value="INPROGRESS">In Progress</option>
-                <option value="COMPLETED">Completed</option>
-                <option value="ONHOLD">On Hold</option>
-              </select>
-              <button onClick={() => addTodo()}>Add Task</button>
-            </form>
+            <h2>Add A New Task</h2>
+            <div className="form-wrapper">
+              <form>
+                <div className="close" onClick={() => setModalIsOpen(false)}>
+                  <GrIcons.GrClose />
+                </div>
+                <label htmlFor="">Title:</label>
+                <input
+                  required
+                  type="text"
+                  name="title"
+                  onChange={(event) => setInput("title", event.target.value)}
+                  value={formState.title}
+                />
+                {/* <input
+                  name="description"
+                  onChange={(event) =>
+                    setInput("description", event.target.value)
+                  }
+                  value={formState.description}
+                  placeholder="Description"
+                /> */}
+                <label htmlFor="">Description:</label>
+                <textarea
+                  type="text"
+                  name="description"
+                  onChange={(event) =>
+                    setInput("description", event.target.value)
+                  }
+                  value={formState.description}
+                ></textarea>
+                <div className="date-status">
+                  <input
+                    required
+                    type="date"
+                    name="dueDate"
+                    onChange={(event) =>
+                      setInput("dueDate", event.target.value)
+                    }
+                    value={formState.dueDate}
+                  />
+                  <select
+                    required
+                    defaultValue="NOTSTARTED"
+                    name="status"
+                    onChange={(event) => setInput("status", event.target.value)}
+                  >
+                    <option value="NOTSTARTED">Not Started</option>
+                    <option value="INPROGRESS">In Progress</option>
+                    <option value="COMPLETED">Completed</option>
+                    <option value="ONHOLD">On Hold</option>
+                  </select>
+                </div>
+                <button onClick={() => addTodo()}>Add Task</button>
+              </form>
+            </div>
           </Modal>
           <div className="todos">
             <div className="todo-container">

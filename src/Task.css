@@ -52,8 +52,66 @@
 .date-status{
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
+    
 }
 
 .close{
     cursor: pointer;
+}
+
+
+
+
+form{
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  /* background: rgba(0,0,0,.1); */
+  padding: 100px;
+}
+
+input[type=text], textarea {
+  display: inline-block;
+  border: none;
+  text-align: left;
+  box-shadow: 3px 2px rgba(15, 2, 46, 0.6);
+  padding: 10px;
+  width: 350px;
+  margin: 10px 0;
+  background: transparent;
+  color: #161b33;
+}
+
+input[type=text]:focus{
+  background: none;
+  border: none;
+  color:#161b33;
+}
+
+label{
+ font-family: sans-serif;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: .8em;
+   color: #161b33;
+}
+
+form button{
+  
+  background: #161b33;
+  color: #fff;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 20px 0;
+  padding: 10px 30px;
+  border: 2px solid #FFF;
+  cursor: pointer;
+
+}
+
+form button:hover{
+     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }

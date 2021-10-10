@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
-import { createTodo, deleteTodo } from "./graphql/mutations";
+import { createTodo, deleteTodo, updateTodo } from "./graphql/mutations";
 import { listTodos } from "./graphql/queries";
 import * as FaIcons from "react-icons/fa";
 import * as GrIcons from "react-icons/gr"
@@ -10,6 +10,9 @@ import { fetchCompleted } from "./request";
 import styled from "styled-components";
 import Modal from "react-modal"
 import { IconContext } from "react-icons/lib";
+
+import * as mutations from "./graphql/mutations";
+
 
 
 
@@ -99,8 +102,33 @@ function Task( {title, fetchUrl}){
       console.log("failed to delete todo:", error)
     }
   }
+
+  async function updateStatus(todoId, todoStatus) {
+    try {
+      let task;
+      const updatedTodoData = todos.map((todo) => {
+        if (todo.id === todoId) {
+          task = todo;
+          task.status = todoStatus;
+          return task;
+        }
+        return todo;
+      });
+      await API.graphql(
+        graphqlOperation(updateTodo, {
+          input: { status: task.status, id: task.id },
+        })
+      );
+      setTodos(updatedTodoData);
+    } catch (error) {
+      console.log("error updating todo:", error);
+    }
+  }
+
+
+
     return (
-      <IconContext.Provider value={{ color: "#fff" }}>
+      <IconContext.Provider value={{ color: "#161b33" }}>
         <div className="wrapper">
           <div className="actions">
             <div className="page-title">
@@ -134,12 +162,11 @@ function Task( {title, fetchUrl}){
               },
             }}
           >
-                <div className="close" onClick={() => setModalIsOpen(false)}>
-                  <GrIcons.GrClose />
-                </div>
+            <div className="close" onClick={() => setModalIsOpen(false)}>
+              <GrIcons.GrClose />
+            </div>
             <div className="form-title">
-
-            <h2>Add A New Task</h2>
+              <h2>Add A New Task</h2>
             </div>
             <div className="form-wrapper">
               <form>
@@ -201,20 +228,26 @@ function Task( {title, fetchUrl}){
                   <div key={todo.id ? todo.id : index}>
                     <div className="todo-title">
                       <p>{todo.title}</p>
-                      <span onClick={() => removeTodo(todo.id)}>
-                        <FaIcons.FaTrashAlt /> Delete
+                      <span
+                        className="delete-button"
+                        onClick={() => removeTodo(todo.id)}
+                      >
+                        <FaIcons.FaTrashAlt />
                       </span>
                     </div>
                     <div className="description">
                       <p>{todo.description}</p>
                     </div>
                     <div className="date-status">
-                      <input type="date" name="dueDate" value={todo.dueDate} />
+                      <input type="date" name="dueDate" value={todo.dueDate} onChange={ (event) => updateStatus(todo.id, event.target.value)}
+                      
+                       />
 
                       <select
                         name="status"
                         id="status"
                         defaultValue={todo.status}
+                        
                       >
                         <option value="NOTSTARTED">Not Started</option>
                         <option value="INPROGRESS">In Progress</option>

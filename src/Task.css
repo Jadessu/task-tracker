@@ -49,6 +49,10 @@
     justify-content: space-between;
 }
 
+.delete-button{
+    cursor: pointer;
+}
+
 .date-status{
     display: flex;
     justify-content: space-between;

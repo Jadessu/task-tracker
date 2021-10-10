@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
-import { createTodo } from "./graphql/mutations";
+import { createTodo, deleteTodo } from "./graphql/mutations";
 import { listTodos } from "./graphql/queries";
 import * as FaIcons from "react-icons/fa";
 import * as GrIcons from "react-icons/gr"
@@ -89,6 +89,15 @@ function Task( {title, fetchUrl}){
       console.log(" error creating todo:", err);
     }
     
+  }
+
+  async function removeTodo(id){
+    try {
+      await API.graphql(graphqlOperation(deleteTodo, { input : { id}}))
+      setTodos(todos.filter(todo => todo.id !== id))
+    } catch ( error){
+      console.log("failed to delete todo:", error)
+    }
   }
     return (
       <IconContext.Provider value={{ color: "#fff" }}>
@@ -192,8 +201,8 @@ function Task( {title, fetchUrl}){
                   <div key={todo.id ? todo.id : index}>
                     <div className="todo-title">
                       <p>{todo.title}</p>
-                      <span>
-                        <FaIcons.FaTrashAlt />
+                      <span onClick={() => removeTodo(todo.id)}>
+                        <FaIcons.FaTrashAlt /> Delete
                       </span>
                     </div>
                     <div className="description">

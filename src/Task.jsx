@@ -55,13 +55,17 @@ function Task( {title, fetchUrl}){
   const [formState, setFormState] = useState(initialState);
   const [ modalIsOpen, setModalIsOpen] = useState(false)
   const [todos, setTodos] = useState([]);
+  const [ sortedTodo, setSortedTodo] = useState([])
 
 
 
   useEffect(() => {
     fetchTodos();
     
+    
   }, []);
+
+
 
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value });
@@ -72,6 +76,7 @@ function Task( {title, fetchUrl}){
       const todoData = await fetchUrl;
       const todos = todoData.data.listTodos.items;
       setTodos(todos);
+      setSortedTodo(todos)
     } catch (err) {
       console.log(" error fetching todoos");
     }
@@ -103,31 +108,10 @@ function Task( {title, fetchUrl}){
     }
   }
 
-  async function updateStatus(todoId, todoStatus) {
-    try {
-      let task;
-      const updatedTodoData = todos.map((todo) => {
-        if (todo.id === todoId) {
-          task = todo;
-          task.status = todoStatus;
-          return task;
-        }
-        return todo;
-      });
-      await API.graphql(
-        graphqlOperation(updateTodo, {
-          input: { status: task.status, id: task.id },
-        })
-      );
-      setTodos(updatedTodoData);
-    } catch (error) {
-      console.log("error updating todo:", error);
-    }
-  }
-
 
 
     return (
+      <>
       <IconContext.Provider value={{ color: "#161b33" }}>
         <div className="wrapper">
           <div className="actions">
@@ -221,6 +205,13 @@ function Task( {title, fetchUrl}){
               </form>
             </div>
           </Modal>
+          <div>
+            <select name="sort" id="sort"  >
+              <option value="Due First">Due First</option>
+              <option value="Alphabetically">Alphabetically</option>
+              <option value="Due Last">Due Last</option>
+            </select>
+          </div>
           <div className="todos">
             <div className="todo-container">
               {todos.map((todo, index) => (
@@ -239,7 +230,9 @@ function Task( {title, fetchUrl}){
                       <p>{todo.description}</p>
                     </div>
                     <div className="date-status">
-                      <input type="date" name="dueDate" value={todo.dueDate} onChange={ (event) => updateStatus(todo.id, event.target.value)}
+                      
+            
+                      <input type="date" name="dueDate" value={todo.dueDate} 
                       
                        />
 
@@ -247,6 +240,7 @@ function Task( {title, fetchUrl}){
                         name="status"
                         id="status"
                         defaultValue={todo.status}
+                        
                         
                       >
                         <option value="NOTSTARTED">Not Started</option>
@@ -262,6 +256,8 @@ function Task( {title, fetchUrl}){
           </div>
         </div>
       </IconContext.Provider>
+     
+      </>
     );
 }
 

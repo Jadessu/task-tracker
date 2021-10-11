@@ -1,0 +1,43 @@
+html {
+  box-sizing: border-box;
+ 
+}
+
+*, 
+*:before, 
+*:after {
+  box-sizing: inherit;
+}
+
+.wrapper {
+	width: 97%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+/* grid system */
+.row{
+  display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+}
+
+
+[class*="data-"]{
+	margin-left: 4%;
+	margin-top: 4%;
+}
+
+
+/* Desktop screen Sizes */
+@media only screen and (min-width: 768px) {
+	.data-card{
+		flex: 0 0 20%
+	}
+
+
+	
+
+}
+
+

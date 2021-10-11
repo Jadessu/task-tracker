@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import { createTodo } from "./graphql/mutations";
-import { listTodos } from "./graphql/queries";
+import { listTodos, todosAlphabetically, todosDueFirst} from "./graphql/queries";
 import * as FaIcons from "react-icons/fa";
 import "./Task.css";
 
@@ -56,3 +56,24 @@ export const fetchonHold =  API.graphql({
   variables: { filter: onHoldFilter },
 });
 
+export const fetchByTitle = async () => {
+  try {
+  const todoData = await API.graphql(graphqlOperation(todosAlphabetically, { type: "Todo"}));
+  const todos = await todoData.data.todosAlphabetically.items
+  const alphabeticalTodo = todos.sort(( a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()))
+  return alphabeticalTodo
+  } catch (error){
+    console.log("error getting todos alphabetically:", error)
+  }
+}
+
+export const fetchDueFirst = async () => {
+try {
+  const todoData = await API.graphql(graphqlOperation(todosDueFirst, {type: "Todo"}))
+  const todos = await todoData.data.todosDueFirst.items
+  const dueFirstTodos = todos.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
+  return dueFirstTodos
+} catch (error){
+  console.log("error getting todos by date:", error)
+}
+}

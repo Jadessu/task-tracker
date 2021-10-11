@@ -34,3 +34,87 @@ export const listTodos = /* GraphQL */ `
     }
   }
 `;
+export const todosDueFirst = /* GraphQL */ `
+  query TodosDueFirst(
+    $dueDate: AWSDate
+    $sortDirection: ModelSortDirection
+    $filter: ModelTodoFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    todosDueFirst(
+      dueDate: $dueDate
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        title
+        description
+        status
+        dueDate
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const todosDueLast = /* GraphQL */ `
+  query TodosDueLast(
+    $dueDate: AWSDate
+    $sortDirection: ModelSortDirection
+    $filter: ModelTodoFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    todosDueLast(
+      dueDate: $dueDate
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        title
+        description
+        status
+        dueDate
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const todosAlphabetically = /* GraphQL */ `
+  query TodosAlphabetically(
+    $title: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelTodoFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    todosAlphabetically(
+      title: $title
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        title
+        description
+        status
+        dueDate
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

@@ -1,7 +1,7 @@
-type Todo @model {
-  @key(name: "todosDueFirst", fields: ["type", "dueDate"], queryField: "todosDueFirst")
-  @key(name: "todosDueLast", fields: ["type", "dueDate"], queryField: "todosDueLast")
-  @key(name: "todosAlphabetically", fields: ["type", "title"], queryField: "todosAlphabetically")
+type Todo @model 
+  @key(name: "todosDueFirst", fields: [ "dueDate"], queryField: "todosDueFirst")
+  @key(name: "todosDueLast", fields: [ "dueDate"], queryField: "todosDueLast")
+  @key(name: "todosAlphabetically", fields: ["title"], queryField: "todosAlphabetically"){
   id: ID!
   title: String!
   description: String

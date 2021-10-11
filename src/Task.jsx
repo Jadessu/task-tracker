@@ -55,15 +55,17 @@ function Task( {title, fetchUrl}){
   const [formState, setFormState] = useState(initialState);
   const [ modalIsOpen, setModalIsOpen] = useState(false)
   const [todos, setTodos] = useState([]);
-  const [ sortedTodo, setSortedTodo] = useState([])
+
+
+  let completedTasks = []
+  console.log(completedTasks)
 
 
 
   useEffect(() => {
-    fetchTodos();
-    
-    
+    fetchTodos(); 
   }, []);
+
 
 
 
@@ -76,13 +78,42 @@ function Task( {title, fetchUrl}){
       const todoData = await fetchUrl;
       const todos = todoData.data.listTodos.items;
       setTodos(todos);
-      setSortedTodo(todos)
+     
     } catch (err) {
       console.log(" error fetching todoos");
     }
   }
 
- 
+
+
+
+
+  let DueFirst = todos.sort(
+    (a, b) => new Date(a.dueDate) - new Date(b.dueDate)
+  );
+ let Alphabet = todos.sort((a, b) =>
+   a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+ );
+
+ let DueLast = todos.sort((a, b) => new Date(b.dueDate) - new Date(a.dueDate));
+
+
+  function filterTodos(event){
+    if (event === "Due First"){
+      setTodos(DueFirst)
+      console.log("due first",DueFirst)
+    } else if (event === "Alphabetically"){
+      setTodos(Alphabet)
+      console.log("alphabetical", Alphabet)
+    } else if (event === "Due Last"){
+       setTodos(DueLast)
+      console.log("due last",DueLast)
+    } else { console.log("nothing")}
+   
+    
+  }
+
+
 
 
   async function addTodo() {
@@ -108,10 +139,12 @@ function Task( {title, fetchUrl}){
     }
   }
 
+  // DASHBOARD FUNCTIONS
+
 
 
     return (
-      <>
+      
       <IconContext.Provider value={{ color: "#161b33" }}>
         <div className="wrapper">
           <div className="actions">
@@ -206,10 +239,11 @@ function Task( {title, fetchUrl}){
             </div>
           </Modal>
           <div>
-            <select name="sort" id="sort"  >
+            <select name="sort" id="sort"  onChange={ event => filterTodos(event.target.value)}>
+              <option value="" disabled selected> Sort Tasks</option>
               <option value="Due First">Due First</option>
-              <option value="Alphabetically">Alphabetically</option>
               <option value="Due Last">Due Last</option>
+              <option value="Alphabetically">Alphabetically</option>
             </select>
           </div>
           <div className="todos">
@@ -255,9 +289,10 @@ function Task( {title, fetchUrl}){
             </div>
           </div>
         </div>
+        
       </IconContext.Provider>
      
-      </>
+      
     );
 }
 

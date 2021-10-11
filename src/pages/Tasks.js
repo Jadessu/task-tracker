@@ -11,7 +11,7 @@ export const Tasks = () => {
 export const InProgress = () => {
   return (
     <div>
-      <Task title="Tasks In Progress" fetchUrl={fetchInProgress}/>
+      <Task title="Tasks In Progress" fetchUrl={fetchInProgress} />
     </div>
   );
 };

@@ -1,0 +1,39 @@
+.title {
+  color: #45494b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.amount{
+    font-weight: 700;
+}
+
+.icon{
+    color: #469cac;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 70px;
+  padding: 25px;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: 5px 5px 13px #6c619e, -5px -5px 13px #ffffff;
+  min-width: 250px;
+  /* margin: 0 2rem; */
+}
+
+.card_inner {
+  display: flex;
+ align-items: center;
+ justify-content: space-between;
+
+}
+
+.card_inner > span {
+  font-size: 25px;
+}

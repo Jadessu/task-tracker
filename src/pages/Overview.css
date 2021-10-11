@@ -28,6 +28,16 @@ html {
 	margin-top: 4%;
 }
 
+.data-week{
+	 padding: 25px;
+  border-radius: 5px;
+  background: #ffffff;
+ box-shadow: 5px 5px 13px #6c619e, -5px -5px 13px #ffffff;
+}
+.data-week-title{
+	
+	
+}
 
 /* Desktop screen Sizes */
 @media only screen and (min-width: 768px) {

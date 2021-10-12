@@ -2,7 +2,7 @@
 ## A Full-Stack CRUD Serverless React App
 
 
-![](/sRC/img/banner.jpg)
+![](/src/img/banner.jpg)
 
 
 [LIVE DEMO](https://dev.d28gfb5iu3sn51.amplifyapp.com)

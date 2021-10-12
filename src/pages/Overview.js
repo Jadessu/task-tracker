@@ -20,7 +20,7 @@ function Overview(props) {
 
 
   const defaultOptions = {
-    loop: false,
+    loop: true,
     autoplay: true,
     animationData: animationData,
     renderSettings: {
@@ -86,7 +86,6 @@ let weekArr = []
  dueToday.map((todo) => todayArr.push(todo.title))
  dueThisWeek.map((todo) => weekArr.push(todo.title))
 
-console.log("today array", todayArr)
 
 
  

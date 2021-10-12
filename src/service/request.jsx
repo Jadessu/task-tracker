@@ -1,8 +1,7 @@
 import Amplify, { API, graphqlOperation } from "aws-amplify";
-import { listTodos, todosAlphabetically, todosDueFirst} from "./graphql/queries";
-import "./Task.css";
+import { listTodos, todosAlphabetically, todosDueFirst} from "../graphql/queries";
 
-import awsExports from "./aws-exports";
+import awsExports from "../aws-exports";
 Amplify.configure(awsExports);
 
  const completedfilter = {

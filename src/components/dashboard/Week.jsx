@@ -2,7 +2,6 @@ import React from "react"
 import "./Week.css"
 
 function Week({title, data}){
-    console.log(data)
 
     return (
         <div> 

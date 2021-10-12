@@ -1,6 +1,6 @@
 import React from "react";
 import Task from "../Task";
-import {  fetchCompleted, fetchInProgress,  fetchonHold, fetchAll } from "../request";
+import {  fetchCompleted, fetchInProgress,  fetchonHold, fetchAll, fetchNotStarted } from "../service/request";
 export const Tasks = () => {
   return (
     <div>
@@ -26,6 +26,14 @@ export const OnHold = () => {
   return (
     <div>
      <Task title="Tasks On Hold" fetchUrl={fetchonHold}/>
+    </div>
+  );
+};
+
+export const NotStarted = () => {
+  return (
+    <div>
+     <Task title="Tasks Not Started" fetchUrl={fetchNotStarted}/>
     </div>
   );
 };

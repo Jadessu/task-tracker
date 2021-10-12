@@ -5,6 +5,7 @@ import * as RiIcons from "react-icons/ri"
 import * as BsIcons from "react-icons/bs"
 import * as MdIcons from "react-icons/md"
 import * as BiIcons from "react-icons/bi"
+import * as VsIcons from "react-icons/vsc"
 
 
 export const SidebarData = [
@@ -20,6 +21,11 @@ export const SidebarData = [
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
+      {
+        title: "Not Started",
+        path: "/tasks/notstarted",
+        icon: <VsIcons.VscDebugRestartFrame />,
+      },
       {
         title: "In Progress",
         path: "/tasks/inprogress",
@@ -37,9 +43,5 @@ export const SidebarData = [
       },
     ],
   },
-  {
-    title: "Timer",
-    path: "/timer",
-    icon: <BiIcons.BiTimer />,
-  },
+ 
 ];

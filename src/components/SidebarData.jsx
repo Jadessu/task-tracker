@@ -7,13 +7,14 @@ import * as GrIcons from "react-icons/gr"
 import * as BsIcons from "react-icons/bs"
 import * as MdIcons from "react-icons/md"
 import * as BiIcons from "react-icons/bi"
+import * as VsIcons from "react-icons/vsc";
+
 
 export const SidebarData = [
   {
     title: "Overview",
     path: "/overview",
     icon: <AiIcons.AiFillHome />,
-    
   },
   {
     title: "Tasks",
@@ -25,7 +26,7 @@ export const SidebarData = [
       {
         title: "In Progress",
         path: "/tasks/inprogress",
-        icon: <GrIcons.GrInProgress />,
+        icon: <FaIcons.FaHourglassStart />,
       },
       {
         title: "Completed",

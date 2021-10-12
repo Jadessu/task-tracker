@@ -1,4 +1,4 @@
-import  { Auth } from "aws-amplify";
+import  { Auth, Hub } from "aws-amplify";
 
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -56,10 +56,21 @@ const UserName = styled.div`
   justify-content: center;
 `;
 
-const UserIcon = styled.div``;
+const handleSignOutButtonClick = async () => {
+  try {
+    await Auth.signOut();
+    Hub.dispatch("UI Auth", {
+      // channel must be 'UI Auth'
+      event: "AuthStateChange", // event must be 'AuthStateChange'
+      message: "signedout", // message must be 'signedout'
+    });
+  } catch (error) {
+    console.log("error signing out: ", error);
+  }
+};  
 
 function Sidebar() {
-  const [sidebar, setSidebar] = useState(false);
+  const [sidebar, setSidebar] = useState(true);
   const showSidebar = () => setSidebar(!sidebar);
   const closeSidebar = () => setSidebar(false)
 
@@ -88,6 +99,8 @@ function Sidebar() {
               <FaIcons.FaUserCircle />
 
               <SidebarLabel>{user}</SidebarLabel>
+              <span className="sign-out"><FaIcons.FaSignOutAlt onClick={handleSignOutButtonClick} /></span>
+              
             </UserName>
 
             {SidebarData.map((item, index) => {

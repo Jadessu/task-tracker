@@ -1,0 +1,11 @@
+.article a{
+    text-decoration: none;
+    color: black;
+
+}
+
+.article{
+    margin: 1.3rem;
+      box-shadow: 5px 5px 13px #c6bfe4, -5px -5px 13px #ffffff;
+
+}

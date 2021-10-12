@@ -11,9 +11,26 @@ import * as VsIcons from "react-icons/vsc"
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import { listTodos } from '../graphql/queries';
 import Week from '../components/dashboard/Week';
+import Lottie from "react-lottie"
+import animationData from "../lotties/greeting-intro.json"
+import News from '../components/News/News';
+import NewsList from '../components/News/NewsList';
+import { Auth } from "aws-amplify";
+
 
 function Overview(props) {
   const [allTodos, setAllTodos] = useState([]);
+        const [user, setUser] = useState("");
+
+
+  const defaultOptions = {
+    loop: false,
+    autoplay: true,
+    animationData: animationData,
+    renderSettings: {
+      preserveAspectRation: "xMidYMid slice"
+    }
+  }
 
 
 
@@ -31,6 +48,10 @@ function Overview(props) {
       console.log(" error fetching todoos");
     }
   }
+
+   Auth.currentAuthenticatedUser().then((user) => {
+     setUser(user.username);
+   });
 
 
 function getTomorrow(){
@@ -85,6 +106,17 @@ let notStartedArr = allTodos.filter( todo => todo.status === "NOTSTARTED")
 
     return (
       <div className="wrapper">
+        <div class="main__title">
+        <div className="lottie-file">
+          <Lottie className = "lottie"options={defaultOptions} height={200} width={200}/>
+        </div>
+          
+          <div class="main__greeting">
+            <h1>Hello, {user}</h1>
+            <p>Welcome to your Task dashboard</p>
+          </div>
+        </div>
+
         <div className="row">
           <section class="data-card">
             <Card
@@ -116,7 +148,7 @@ let notStartedArr = allTodos.filter( todo => todo.status === "NOTSTARTED")
           </section>
         </div>
         <div className="row">
-          <div className="data-week">
+          <section className="data-week">
             <div classsName="data-week-title">
               <h1>This Week's Overview</h1>
             </div>
@@ -126,12 +158,18 @@ let notStartedArr = allTodos.filter( todo => todo.status === "NOTSTARTED")
             />
             <Week
               title={"Due Tomorrow"}
-              data={tomorrowArr.length ? tomorrowArr
-              
-              : "Nothing Due Today"}
+              data={tomorrowArr.length ? tomorrowArr : "Nothing Due Today"}
             />
-            <Week title={"Due Rest of this week"} data={weekArr.length ? weekArr : "Nothing due the rest of this week"}/>
-          </div>
+            <Week
+              title={"Due Rest of this week"}
+              data={
+                weekArr.length ? weekArr : "Nothing due the rest of this week"
+              }
+            />
+          </section>
+          <section className="data-week">
+            <NewsList/>
+          </section>
         </div>
       </div>
     );

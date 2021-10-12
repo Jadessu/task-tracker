@@ -5,7 +5,7 @@
 ![](/sRC/img/banner.jpg)
 
 
-[LIVE DEMO](https://sei-unite.herokuapp.com/)
+[LIVE DEMO](https://dev.d28gfb5iu3sn51.amplifyapp.com)
 
 This is a full CRUD Serverless React todo App built with Amplify.
 

@@ -63,7 +63,7 @@ function Task( {title, fetchUrl}){
 
 
   }, []);
-  
+
   async function fetchTodos() {
     try {
       const todoData = await fetchUrl;
@@ -97,18 +97,18 @@ function Task( {title, fetchUrl}){
 
  let DueLast = todos.sort((a, b) => new Date(b.dueDate) - new Date(a.dueDate));
 
-
+// This is the filter function I tried using to sort the todos. The sort button would have an onchange function that will filter the todos to the event clicked. Unfortunately, this method did not work. 
   function filterTodos(event){
     if (event === "Due First"){
       setTodos(DueFirst)
-      console.log("due first",DueFirst)
+     
     } else if (event === "Alphabetically"){
       setTodos(Alphabet)
-      console.log("alphabetical", Alphabet)
+      
     } else if (event === "Due Last"){
        setTodos(DueLast)
-      console.log("due last",DueLast)
-    } else { console.log("nothing")}
+      
+    } 
    
     
   }

@@ -14,7 +14,7 @@ const Nav = styled.div`
   background: #15171c;
   height: 80px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -29,6 +29,7 @@ const NavIcon = styled(Link)`
 
 const SidebarLabel = styled.span`
   margin-left: 16px;
+  
 `;
 
 const SidebarNav = styled.nav`
@@ -56,6 +57,11 @@ const UserName = styled.div`
   justify-content: center;
 `;
 
+const SignoutButton = styled.span`
+margin-right: 20px;
+justify-content: center;
+font-size: 2rem;
+`
 const handleSignOutButtonClick = async () => {
   try {
     await Auth.signOut();
@@ -70,7 +76,7 @@ const handleSignOutButtonClick = async () => {
 };  
 
 function Sidebar() {
-  const [sidebar, setSidebar] = useState(true);
+  const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
   const closeSidebar = () => setSidebar(false)
 
@@ -89,6 +95,12 @@ function Sidebar() {
           <NavIcon to="#">
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
+          <SignoutButton>
+            <FaIcons.FaSignOutAlt
+              onClick={handleSignOutButtonClick}
+              className="signout-button"
+            />
+          </SignoutButton>
         </Nav>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
@@ -99,7 +111,6 @@ function Sidebar() {
               <FaIcons.FaUserCircle />
 
               <SidebarLabel>{user}</SidebarLabel>
-              <span className="sign-out"><FaIcons.FaSignOutAlt onClick={handleSignOutButtonClick} /></span>
               
             </UserName>
 

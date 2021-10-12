@@ -139,6 +139,54 @@ function Task( {title, fetchUrl}){
     }
   }
 
+// variables to update todo
+let targetTodoForDateChange
+let targetTodoForStatusChange
+ 
+  async function updateDueDate(todoId, todoDueDate) {
+    try {
+     
+      const updatedTodos = todos.map((todo) => {
+        if (todo.id === todoId) {
+         targetTodoForDateChange = todo;
+         targetTodoForDateChange.dueDate = todoDueDate;
+          return targetTodoForDateChange;
+        }
+        return todo;
+      });
+      await API.graphql(
+        graphqlOperation(updateTodo, {
+          input: { dueDate:targetTodoForDateChange.dueDate, id:targetTodoForDateChange.id },
+        })
+      );
+      setTodos(updatedTodos);
+    } catch (err) {
+      console.log("error updating todo:", err);
+    }
+  }
+
+    async function updateStatus(todoId, todoStatus) {
+      try {
+        const updatedTodos = todos.map((todo) => {
+          if (todo.id === todoId) {
+            targetTodoForStatusChange = todo;
+            targetTodoForStatusChange.status = todoStatus;
+            return targetTodoForStatusChange;
+          }
+          return todo;
+        });
+        await API.graphql(
+          graphqlOperation(updateTodo, {
+            input: { status: targetTodoForStatusChange.status, id: targetTodoForStatusChange.id },
+          })
+        );
+        setTodos(updatedTodos);
+      } catch (err) {
+        console.log("error updating todo:", err);
+      }
+    }
+
+
   // DASHBOARD FUNCTIONS
 
 
@@ -266,7 +314,7 @@ function Task( {title, fetchUrl}){
                     <div className="date-status">
                       
             
-                      <input type="date" name="dueDate" value={todo.dueDate} 
+                      <input type="date" name="dueDate" value={todo.dueDate} onChange={ (event) => updateDueDate(todo.id, event.target.value)}
                       
                        />
 
@@ -274,6 +322,7 @@ function Task( {title, fetchUrl}){
                         name="status"
                         id="status"
                         defaultValue={todo.status}
+                        onChange={ (event) => updateStatus(todo.id, event.target.value)}
                         
                         
                       >

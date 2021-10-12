@@ -1,19 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import Card from '../components/dashboard/Card'
 import "./Overview.css"
-import Task from '../Task';
 import * as FaIcons from "react-icons/fa";
-import * as GrIcons from "react-icons/gr";
 import * as BsIcons from "react-icons/bs";
-import * as MdIcons from "react-icons/md";
 import * as IMIcons from "react-icons/im";
 import * as VsIcons from "react-icons/vsc"
-import Amplify, { API, graphqlOperation } from "aws-amplify";
+import  { API, graphqlOperation } from "aws-amplify";
 import { listTodos } from '../graphql/queries';
 import Week from '../components/dashboard/Week';
 import Lottie from "react-lottie"
 import animationData from "../lotties/greeting-intro.json"
-import News from '../components/News/News';
 import NewsList from '../components/News/NewsList';
 import { Auth } from "aws-amplify";
 
@@ -90,7 +86,7 @@ let weekArr = []
  dueToday.map((todo) => todayArr.push(todo.title))
  dueThisWeek.map((todo) => weekArr.push(todo.title))
 
-
+console.log("today array", todayArr)
 
 
  
@@ -158,7 +154,7 @@ let notStartedArr = allTodos.filter( todo => todo.status === "NOTSTARTED")
             />
             <Week
               title={"Due Tomorrow"}
-              data={tomorrowArr.length ? tomorrowArr : "Nothing Due Today"}
+              data={tomorrowArr.length ? tomorrowArr : "Nothing Due Tomorrow"}
             />
             <Week
               title={"Due Rest of this week"}

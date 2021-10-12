@@ -1,9 +1,8 @@
 import React from "react"
-import { RiTaskLine } from "react-icons/ri"
 import "./Week.css"
 
 function Week({title, data}){
-    console.log("this is data", data)
+    console.log(data)
 
     return (
         <div> 

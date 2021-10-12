@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import { createTodo, deleteTodo, updateTodo } from "./graphql/mutations";
-import { listTodos } from "./graphql/queries";
 import * as FaIcons from "react-icons/fa";
 import * as GrIcons from "react-icons/gr"
 import "./Task.css"
-import requests from "./request";
-import { fetchCompleted } from "./request";
 import styled from "styled-components";
 import Modal from "react-modal"
 import { IconContext } from "react-icons/lib";
 
-import * as mutations from "./graphql/mutations";
 
 
 
@@ -64,15 +60,10 @@ function Task( {title, fetchUrl}){
 
   useEffect(() => {
     fetchTodos(); 
+
+
   }, []);
-
-
-
-
-  function setInput(key, value) {
-    setFormState({ ...formState, [key]: value });
-  }
-
+  
   async function fetchTodos() {
     try {
       const todoData = await fetchUrl;
@@ -83,6 +74,15 @@ function Task( {title, fetchUrl}){
       console.log(" error fetching todoos");
     }
   }
+
+
+
+
+  function setInput(key, value) {
+    setFormState({ ...formState, [key]: value });
+  }
+
+  
 
 
 

@@ -1,6 +1,6 @@
 import  { Auth, Hub } from "aws-amplify";
 
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
@@ -66,9 +66,9 @@ const handleSignOutButtonClick = async () => {
   try {
     await Auth.signOut();
     Hub.dispatch("UI Auth", {
-      // channel must be 'UI Auth'
-      event: "AuthStateChange", // event must be 'AuthStateChange'
-      message: "signedout", // message must be 'signedout'
+     
+      event: "AuthStateChange", 
+      message: "signedout", 
     });
   } catch (error) {
     console.log("error signing out: ", error);

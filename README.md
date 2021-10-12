@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+# Task Tracker
+## A Full-Stack CRUD Serverless React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+![](/sRC/img/banner.jpg)
 
-In the project directory, you can run:
 
-### `npm start`
+[LIVE DEMO](https://sei-unite.herokuapp.com/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is a full CRUD Serverless React todo App built with Amplify.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Note: This app is still in development.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- Users can sign up and log in on the app.
+- Users can add tasks, including the task' title, description, due date, and completion status.
+- Users can view info regarding thier tasks on the main overview page
+- Users can see the daily news on the overview page.
+- User can edit, delete, or update their tasks, as well as sort the tasks.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tech
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Languages & Frameworks
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [HTML] -The standard markup language for documents designed to be displayed in a web browser. 
+- [CSS] - A style sheet language used for presentation of a wesbite.
+- [JAVSCRIPT] - Prototype based object oriented language.
+- [FLEXBOX] -  A layout model that allows elements to align and distribute space within a container. 
+- [GRID] - Enables an author to align elements into columns and rows.
+- [Amplify]- Help front-end web and mobile developers build scalable full stack applications, powered by AWS.
+- [GraphQl] - An open source data query and manipulation language for APIs
+- [ReactIcons] - Popular Icons to include in your react app easily.
+- [ReactModal] - Accessible modal dialog component for React.
 
-### `npm run eject`
+### Websites
+- [ICONS8](https://icons8.com/) - Download design elements for free: icons, photos, vector illustrations, and music for your videos.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [fontawesome](https://fontawesome.com) - A font and icon toolkit based on CSS and less.
+ - [Logo SVG](https://fontawesome.com/v5.15/icons/users?style=solid)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### StackOverflow Threads Used:
+- [SignoutButton Question](https://stackoverflow.com/questions/53095641/aws-amplify-react-authenticator-component-signout-button) - Thread regarding how to customize Amplify's signout button.
+- [Sorting Question](https://stackoverflow.com/questions/62867425/sorting-results-in-aws-amplify-graphql-without-filtering) - Thread regarding how to sort data in Amplify.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [Nested GraphQL Mutation Question](https://stackoverflow.com/questions/65802746/nested-graphql-mutations-with-aws-amplify-appsync) - Thread regarding nested mutations in Amplify.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### Lottie files and images.
+- [ Welcome Screen LottieFile](https://lottiefiles.com/30173-welcome-screen) - By Artem Peretrukhim
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Model
+![](/src/img/model.png)
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+ # WIREFRAME
+### Overview Page
+![](/src/img/overview.png)
+## Overview Mobile
+![](/src/img/overviewMobile.png)
 
-### Analyzing the Bundle Size
+### Tasks Page
+![](/src/img/tasks.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## FUTURE UPDATES
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- [ ] Add pomodoro time for user to use to focus on tasks
+- [ ] Add calendar view for tasks
+- [ ] Add voice recognition AI assistant for tasks.
+- [ ] Design and implement a sign up and login page.
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+ 

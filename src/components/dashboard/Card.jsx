@@ -1,7 +1,6 @@
 import React from "react"
 import "./Card.css"
-import * as FaIcons from "react-icons/fa";
-import * as AiIcons from "react-icons/ai";
+
 
 function Card({title, icon, amount}){
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from "react"
-import Axios from "axios"
-import News from "./News"
+
 import "./NewsList.css"
 
 const NewsList = () => {
@@ -15,14 +14,13 @@ const fetchArticles = async () => {
     " https://saurav.tech/NewsAPI/top-headlines/category/general/us.json"
   );
   const data = await response.json();
-  console.log(data.articles);
+  
   setNews(data.articles);
 };
 
 
 
 let newsArr = news.splice(0, 5)
-console.log(newsArr)
 
 
 
@@ -38,7 +36,7 @@ console.log(newsArr)
             
           <div className="article">
             <a href={article.url} target="_blank" rel="noreferrer">
-              {article.title}{" "}
+              {article.title}
             </a>
           </div>
         </div>

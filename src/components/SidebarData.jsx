@@ -1,13 +1,10 @@
 import React from "react"
 import * as FaIcons from "react-icons/fa"
 import * as AiIcons from "react-icons/ai"
-import * as IoIcons from "react-icons/io"
 import * as RiIcons from "react-icons/ri"
-import * as GrIcons from "react-icons/gr"
 import * as BsIcons from "react-icons/bs"
 import * as MdIcons from "react-icons/md"
 import * as BiIcons from "react-icons/bi"
-import * as VsIcons from "react-icons/vsc";
 
 
 export const SidebarData = [

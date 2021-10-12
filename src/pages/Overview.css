@@ -20,6 +20,7 @@ html {
   display: flex;
 	flex-flow: row wrap;
 	align-items: center;
+	justify-content: center;
 }
 
 
@@ -67,6 +68,14 @@ html {
 	
 }
 
+/* Mobile Landscape Screen Sizes */
+@media only screen and (min-width: 480px){
+	.data-card, .data-week{
+		flex: 0 0 44%;
+	}
+
+	
+}
 
 
 /* Desktop screen Sizes */

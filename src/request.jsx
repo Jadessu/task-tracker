@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
-import { createTodo } from "./graphql/mutations";
 import { listTodos, todosAlphabetically, todosDueFirst} from "./graphql/queries";
-import * as FaIcons from "react-icons/fa";
 import "./Task.css";
 
 import awsExports from "./aws-exports";

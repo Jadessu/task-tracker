@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
 // pages
 import Overview from "./pages/Overview"
 import {Tasks, InProgress, Completed, OnHold, NotStarted} from "./pages/Tasks"
+import Pomodoro from "./components/pomodoro/Pomodoro";
 
 import awsExports from "./aws-exports"
 Amplify.configure(awsExports)
@@ -30,6 +31,7 @@ function App() {
         <Route path="/tasks/completed" exact component={Completed} />
         <Route path="/tasks/onhold" exact component={OnHold} />
         <Route path="/tasks/notstarted" exact component={NotStarted} />
+        <Route path="/pomodoro" exact component={Pomodoro} />
       </Switch>
     </Router>
   );

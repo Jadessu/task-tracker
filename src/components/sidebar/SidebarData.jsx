@@ -43,10 +43,10 @@ export const SidebarData = [
       },
     ],
   },
-  {
-    title: "Pomodoro",
-    path: "/pomodoro",
-    icon: <BiIcons.BiTimer/>
-  }
+  // {
+  //   title: "Pomodoro",
+  //   path: "/pomodoro",
+  //   icon: <BiIcons.BiTimer/>
+  // }
  
 ];

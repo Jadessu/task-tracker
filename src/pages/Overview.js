@@ -150,21 +150,35 @@ let notStartedArr = allTodos.filter( todo => todo.status === "NOTSTARTED")
             </div>
             <Week
               title={"Due Today"}
-              data={todayArr.length ? todayArr : "Nothing Due Today"}
+              data={todayArr.length ? todayArr.map( task => {
+                return (
+                  <ul>
+                    <li> {task}</li>
+                  </ul>
+                );
+              }) : "Nothing Due Today"}
             />
             <Week
               title={"Due Tomorrow"}
               data={tomorrowArr.length ? tomorrowArr.map( task => {
                 return (
-                <div>
-                  {task}
-                  </div>)
+                <ul>
+                 <li> {task}</li>
+                  </ul>
+                  )
+
               }) : "Nothing Due Tomorrow"}
             />
             <Week
               title={"Due Rest of this week"}
               data={
-                weekArr.length ? weekArr : "Nothing due the rest of this week"
+                weekArr.length ? weekArr.map( task => {
+                  return (
+                    <ul>
+                      <li> {task}</li>
+                    </ul>
+                  );
+                }) : "Nothing due the rest of this week"
               }
             />
           </section>

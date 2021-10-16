@@ -1,8 +1,11 @@
 .todo-container{
     display: flex;
     flex-wrap: wrap;
-    margin: 2rem;
+    margin-top: 2rem; 
+     margin-left: 8rem;
+    
 }
+
 
 .tasks-container{
     max-width: 1200px;
@@ -16,14 +19,23 @@
     width: 97%;
 	max-width: 1200px;
 	margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+   
 
 }
 
 .actions{
-    margin-left: 2rem;
+    margin-left: 9.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+}
+
+.page-title{
+   margin-right: 5rem;
+    
 
 }
 
@@ -126,3 +138,35 @@ form button{
 form button:hover{
      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
+
+
+.select{
+   /* margin-left: 10rem;  */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.select select{
+     background-color: #161b33;
+  color: white;
+  padding: 12px;
+  width: 9rem;
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+/* .todo-container select{
+       background-color: #170d1a;
+  color: white;
+
+  border: none;
+
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+} */
+

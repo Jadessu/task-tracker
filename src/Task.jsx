@@ -47,7 +47,7 @@ function Task({ title, fetchUrl }) {
 
   const [filterEvent, setFilterEvent] = useState();
 
-  const [ tacos, setTacos] = useState([])
+  const [ sortedTasks, setSortedTasks] = useState([])
 
   let completedTasks = [];
   console.log(completedTasks);
@@ -70,36 +70,15 @@ function Task({ title, fetchUrl }) {
     setFormState({ ...formState, [key]: value });
   }
 
-  //   function setState(){
-  // let byLetters = todos?.sort((a, b) =>
-  //   a.title.toLowerCase().localeCompare(b.title.toLowerCase())
-  // );
 
-  // setAlphabet(byLetters);
-  // console.log("this is alphabet", alphabet);
-  //   }
-
-  // useEffect(() => {
-
-  // filterFunction()
-
-  // }, [todos]);
-
-  // let byLetters = todos.sort((a, b) =>
-  //         a.title.toLowerCase().localeCompare(b.title.toLowerCase())
-  //       );
-  //  let DueFirst = todos.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
-
-  //  let DueLast = todos.sort((a, b) => new Date(b.dueDate) - new Date(a.dueDate));
-
-  // This is the filter function I tried using to sort the todos. The sort button would have an onchange function that will filter the todos to the event clicked. Unfortunately, this method did not work.
 
   useEffect(() => {
 
   filterFunction()
 
-  }, [filterEvent, tacos]);
+  }, [filterEvent, sortedTasks]);
 
+  // New function to filter tasks
   function filterTodos(event) {
     setFilterEvent(event);
   }
@@ -133,7 +112,7 @@ function Task({ title, fetchUrl }) {
       if (!formState.title || !formState.description) return;
       const todo = { ...formState };
       setTodos([...todos, todo]);
-      setTacos([...todos, todo]);
+      setSortedTasks([...todos, todo]);
       setFormState(initialState);
       await API.graphql(graphqlOperation(createTodo, { input: todo }));
       setModalIsOpen(false);
@@ -290,7 +269,7 @@ function Task({ title, fetchUrl }) {
             </form>
           </div>
         </Modal>
-        <div>
+        <div class="select wrapper">
           <select
             name="sort"
             id="sort"
@@ -342,7 +321,7 @@ function Task({ title, fetchUrl }) {
                     >
                       <option value="NOTSTARTED">Not Started</option>
                       <option value="INPROGRESS">In Progress</option>
-                      <option value="COMPLETED">Completed</option>
+                      <option value="COMPLETED" >Completed</option>
                       <option value="ONHOLD">On Hold</option>
                     </select>
                   </div>

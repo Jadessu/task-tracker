@@ -31,7 +31,6 @@ function App() {
         <Route path="/tasks/completed" exact component={Completed} />
         <Route path="/tasks/onhold" exact component={OnHold} />
         <Route path="/tasks/notstarted" exact component={NotStarted} />
-        <Route path="/pomodoro" exact component={Pomodoro} />
       </Switch>
     </Router>
   );
